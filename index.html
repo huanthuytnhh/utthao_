@@ -97,8 +97,8 @@
 
       /* Card design */
       .card {
-        width: 400px;
-        height: 500px;
+        width: 1000px;
+        height: 150px;
         background: linear-gradient(145deg, #ffffff, #f1f1f1);
         border-radius: 15px;
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
@@ -115,13 +115,13 @@
         color: #e3442e;
         font-family: "Dancing Script", cursive;
         white-space: nowrap;
-        border-right: 3px solid #e3442e;
+        /* border-right: 3px solid #e3442e; */
         animation: blink 1s step-end infinite;
       }
 
       @keyframes blink {
         50% {
-          border-color: transparent;
+          /* border-color: transparent; */
         }
       }
 
@@ -129,10 +129,10 @@
         font-size: 18px;
         color: #333;
         margin: 20px 0;
-        white-space: nowrap;
-        overflow: hidden;
-        border-right: 3px solid #333;
-        width: 0;
+        white-space: normal; /* Cho phép xuống dòng tự động */
+        overflow-wrap: break-word; /* Tự động xuống dòng khi nội dung quá dài */
+        overflow: hidden; /* Ẩn nội dung tràn ngoài container nếu có */
+        width: 100%; /* Chiều rộng đầy đủ */
         animation: typing 5s steps(50, end) 1s forwards,
           fadeInText 5s linear 1s forwards;
       }
@@ -140,15 +140,17 @@
       @keyframes typing {
         from {
           width: 0;
+          height: 20px;
         }
         to {
           width: 100%;
+          height: 20px;
         }
       }
 
       @keyframes fadeInText {
         from {
-          opacity: 0;
+          opacity: 1;
         }
         to {
           opacity: 1;
@@ -217,28 +219,29 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
 
     <div id="overlay">
+      <h1>Music box</h1>
       <ul>
-        <li class="title">请选择音乐</li>
+        <li class="title">Hãy chọn bài cậu thích !</li>
         <li>
           <button class="btn" id="btnA" type="button">
-            We Wish You A Merry Christmas
+            We Wish You A Merry Christmas 🎄
           </button>
         </li>
-        <li><button class="btn" id="btnB" type="button">花海</button></li>
+        <li>
+          <button class="btn" id="btnB" type="button">Chill chill 🎹</button>
+        </li>
         <li>
           <button class="btn" id="btnC" type="button">
-            No room at the inn by TRG Banks
+            Trên bầu trời có 1 🌟...
           </button>
         </li>
-        <li>
-          <button class="btn" id="btnD" type="button">
-            Jingle Bell Swing by Mark Smeby
-          </button>
-        </li>
-        <li class="separator">或者</li>
+        <!-- <li>
+          <button class="btn" id="btnD" type="button"></button>
+        </li> -->
+        <li class="separator">hoặc</li>
         <li>
           <input type="file" id="upload" hidden />
-          <label for="upload">上传音乐</label>
+          <label for="upload">Tải bài cậu thích ở đây 🙌</label>
         </li>
         <li>
           <button class="btn" id="backBtn" type="button" style="display: none">
@@ -335,7 +338,7 @@
           value: new THREE.DataTexture(analyser.data, fftSize / 2, 1, format),
         };
         const backButton = document.createElement("button");
-        backButton.innerText = "Back";
+        backButton.innerText = "Quay nại";
         backButton.style.position = "absolute";
         backButton.style.top = "20px";
         backButton.style.left = "20px";
@@ -414,11 +417,8 @@
         card.className = "card";
         card.innerHTML = `
         <h1>🎄 Merry Christmas! 🎅</h1>
-        <p>Wishing you joy and happiness !</p>
-        <br/>
-        <p>Wishing you joy and happiness !</p>
-        <br/>
-        <p>Wishing you joy and happiness !</p>
+        <p>每当你抬头仰望天空时, 你都会看 到一颗名为杰克97的星星 !!!</p>
+
         <button id="closeCard">Close</button>
       `;
 
@@ -446,11 +446,11 @@
 
       function loadAudio(i) {
         document.getElementById("overlay").innerHTML =
-          '<div class="text-loading">正在下载音乐，请稍等...</div>';
+          '<div class="text-loading">🐰 Đợi xíu nghen...</div>';
         const files = [
           "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/nVuDbRMAh41qMH49EY35iuprKWV4EzsWKonXHUfG.mp3",
           "./nhac1.mp3",
-          "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/TRG_Banks/TRG_Banks_Christmas_Album/TRG_Banks_-_12_-_No_room_at_the_inn.mp3",
+          "./nhacjack.mp3",
           "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Mark_Smeby/En_attendant_Nol/Mark_Smeby_-_07_-_Jingle_Bell_Swing.mp3",
         ];
 
